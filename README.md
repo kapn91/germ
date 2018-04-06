@@ -1,8 +1,8 @@
-#Germ
-##Description
+# Germ
+## Description
 A simple plant tracking application designed to help me track my plants.
 
-##Tasks:
+## Tasks:
 - [ ] complete basic build
  - The basic build will include options to add plants which will help track plant day, germination time, harvest day.
 - [ ] add Calendar
