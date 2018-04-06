@@ -1,0 +1,6 @@
+html, body { width: 100%; height: 100%; margin: 0; padding: 0; background-color: black; }
+
+#head { height: 10%; width: 100%; margin: 0; padding: 0; -webkit-app-region: drag; }
+#head h1 { font-size: 40px; line-height: 82px; text-align: center; color: white; }
+#sb { float: left; border-right: 1px white solid; height: 90%; width: 30%; margin: 0; padding: 0; }
+#content { height: 90%; margin: 0; padding: 0; }
