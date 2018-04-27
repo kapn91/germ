@@ -7,12 +7,15 @@
 </head>
 <body>
   <div id='head'><h1>Germ</h1></div>
-  <div id='sb'><ul id='pl'><h1 id='season'>2018</h1></ul><div><button id='season' onclick='germination.createNewSeason()'>New Season</button><button id='load' onclick='germination.loadExistingSeason()'>Load Season</button><button id='add' onclick='germination.createNewPlant()'>Add Plant</button></div></div>
-  <div id='content'><div id='data'><div>hi</div></div><div id='calendar'></div></div>
+  <div id='sb'><ul id='pl'><h1 id='season'>2018</h1></ul><div><button id='season' onclick='germination.view.createTemplate(this.id)'>New Season</button><button id='load' onclick='germination.view.createTemplate(this.id)'>Load Season</button><button id='add' onclick='germination.view.createTemplate(this.id)'>Add Plant</button></div></div>
+  <div id='content'><div id='data'><div class = 'visual'>hi</div></div><div id='calendar'></div></div>
   <script src='JS/germ.js'></script>
   <script src='JS/calendar.js'></script>
   <script src='JS/data.js'></script>
+  <script src='JS/plant.js'></script>
+  <script src='JS/season.js'></script>
   <script src='JS/view.js'></script>
+  <script src='JS/events.js'></script>
   <script>germination.init();</script>
 </body>
 </html>

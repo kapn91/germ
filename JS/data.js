@@ -8,16 +8,17 @@ germination.data = {
     if(localStorage.length == 0){
       this.dataExists = false;
       var obj = {
-        name: germination.calendar.current_year,
+        season: germination.calendar.current_year
       }
       var a = 'tomato';
       obj[a] = {
         name: a,
-        harvest_days: 45,
-        germination: 7,
-        plant_day: new Date(germination.calendar.current_month_name + ' ' + germination.calendar.current_day + ' ' + germination.calendar.current_year).toDateString()
+        harvestTime: 45,
+        germinationTime: 7,
+        plantDate: new Date(germination.calendar.current_month_name + ' ' + germination.calendar.current_day + ' ' + germination.calendar.current_year).toDateString()
       };
-      localStorage.setItem(obj.name, JSON.stringify(obj));
+      obj[a].harvestDate = new Date(new Date(obj[a].plantDate).getTime() + (86400000 * obj[a].harvestTime)).toDateString();
+      localStorage.setItem(obj.season, JSON.stringify(obj));
       this.dataExists = true;
     }
     this.latest = localStorage.key(localStorage.length - 1);
@@ -47,7 +48,45 @@ germination.data = {
   },
   // set new data
   setData(key, value){
-    localStorage.setItem(key, JSON.stringify(value));
+    if(!localStorage[key]){
+      let obj = {};
+      obj[value.name] = value
+      localStorage.setItem(key, JSON.stringify(obj));
+      console.log(JSON.parse(localStorage[key]));
+      return
+    }
+    var stored = JSON.parse(localStorage.getItem(key));
+    console.log(stored);
+    console.log(value);
+    stored[value.name] = value;
+    localStorage.setItem(key, JSON.stringify(stored));
+    //germination.view.loadPlants(document.getElementById('season').innerHTML);
+    console.log(localStorage);
+  },
+
+  createPlantObjectTemplate(seasonName, plantName, plantGerminationTime, plantHarvestTime, plantSowDate ){
+    console.log(seasonName);
+    var obj = JSON.parse(localStorage.getItem(seasonName));
+    console.log(obj);
+    if(obj == undefined){
+      obj = {
+        season: seasonName,
+      }
+      localStorage.setItem(obj.season, JSON.stringify(obj));
+    }
+    obj[plantName] = {
+      name: plantName,
+      germinationTime: plantGerminationTime,
+      harvestTime: plantHarvestTime,
+      plantDate: new Date(plantSowDate).toDateString(),
+    }
+    obj[plantName].harvestDate = new Date(new Date(obj[plantName].plantDate).getTime() + (86400000 * plantHarvestTime)).toDateString();
+    if(obj.season !== '' || obj[plantName].name !== ''){
+      console.log(obj.season);
+      console.log(obj);
+      germination.data.setData(obj.season, obj[plantName]);
+      germination.view.loadSeason(obj.season);
+    }
   },
 
   removeData(master, key){
@@ -59,8 +98,8 @@ germination.data = {
     console.log(JSON.parse(localStorage.getItem(master)));*/
 
   }
-}
-
+};
+/*
 /*var season = []
 var Beau = {
   name: "Beau",
@@ -109,4 +148,5 @@ console.log(localStorage.key(localStorage.length - 1));
 //check for data
 //get data
 //load data
+* /
 */

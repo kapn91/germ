@@ -1,0 +1,129 @@
+require(path.resolve('JS/view.js'));
+
+germination.season = {
+
+  createNewSeason(){
+    if(data.style.display === 'none'){ return; }
+    data.style.display = 'none';
+    var div = document.createElement('div');
+    var seasonNameInput = document.createElement('input');
+    var plantNameInput = document.createElement('input');
+    var plantGerminationTimeInput = document.createElement('input');
+    var plantHarvestTimeInput = document.createElement('input');
+    var plantSowDateInput = document.createElement('input');
+    var newPlantButton = document.createElement('button');
+    var submitButton = document.createElement('button');
+    var cancelButton = document.createElement('button');
+    div.id = 'template';
+    content.insertBefore(div,content.firstChild);
+    seasonNameInput.id = 'seasonNameInput';
+    seasonNameInput.placeholder = 'Season Name';
+    seasonNameInput.onfocus = germination.events.removeListener;
+    seasonNameInput.onblur = germination.events.addListener;
+    plantNameInput.id = 'plantNameInput';
+    plantNameInput.placeholder = 'Plant Name';
+    plantNameInput.onfocus = germination.events.removeListener;
+    plantNameInput.onblur = germination.events.addListener;
+    plantGerminationTimeInput.id = 'plantGerminationTimeInput';
+    plantGerminationTimeInput.placeholder = 'Days Until Germination';
+    plantGerminationTimeInput.type = 'number';
+    plantGerminationTimeInput.onfocus = germination.events.removeListener;
+    plantGerminationTimeInput.onblur = germination.events.addListener;
+    plantHarvestTimeInput.id = 'plantHarvestTimeInput';
+    plantHarvestTimeInput.placeholder = 'Days Until Harvest';
+    plantHarvestTimeInput.type = 'number';
+    plantHarvestTimeInput.onfocus = germination.events.removeListener;
+    plantHarvestTimeInput.onblur = germination.events.addListener;
+    plantSowDateInput.id = 'plantSowDateInput';
+    plantSowDateInput.placeholder = 'Date Planted (mm/dd/yyyy)';
+    plantSowDateInput.onkeyup = function(event){ console.log(event.keyCode); if(plantSowDateInput.value.length === 2 || plantSowDateInput.value.length === 5 ){ if(event.keyCode == 8) { return; } plantSowDateInput.value += '/'; } };
+    plantSowDateInput.onfocus = germination.events.removeListener;
+    plantSowDateInput.onblur = germination.events.addListener;
+    newPlantButton.id = 'newPlantObject'
+    newPlantButton.innerHTML = 'Add Another Plant';
+    newPlantButton.onclick = function(){germination.season.addAnotherPlant(document.getElementById('template'))};
+    submitButton.id = 'submitSeason';
+    submitButton.innerHTML = 'Submit';
+    submitButton.onclick = germination.season.submitNewSeason;
+    cancelButton.id = 'cancelButton';
+    cancelButton.innerHTML = 'Cancel';
+    cancelButton.onclick = germination.view.removeTemplate;
+    div.appendChild(seasonNameInput);
+    div.appendChild(plantNameInput);
+    div.appendChild(plantGerminationTimeInput);
+    div.appendChild(plantHarvestTimeInput);
+    div.appendChild(plantSowDateInput);
+    div.appendChild(cancelButton);
+    div.appendChild(submitButton);
+    div.appendChild(newPlantButton);
+    seasonNameInput.focus();
+  },
+
+  loadExistingSeasonTemplate(){
+    if(data.style.display === 'none'){ return; }
+    data.style.display = 'none';
+    var div = document.createElement('div');
+    var cancelButton = document.createElement('button');
+    div.id = 'template';
+    cancelButton.id = 'cancelButton';
+    cancelButton.innerHTML = 'Cancel';
+    cancelButton.onclick = germination.view.removeTemplate;
+    for(let prop in localStorage ){
+      let button = document.createElement('button');
+      button.innerHTML = prop;
+      button.id = prop;
+      button.className = 'season';
+      button.onclick = function(){ germination.view.loadSeason(prop); germination.view.removeTemplate(event); };
+      div.appendChild(button);
+      console.log(prop);
+    }
+    div.appendChild(cancelButton);
+    content.insertBefore(div, content.firstChild);
+  },
+
+  submitNewSeason(){
+    var template = document.getElementById('template');
+    var seasonNameInput = document.getElementById('seasonNameInput').value;
+    var plantNameInput = document.getElementById('plantNameInput').value;
+    var plantGerminationTimeInput = document.getElementById('plantGerminationTimeInput').value;
+    var plantHarvestTimeInput = document.getElementById('plantHarvestTimeInput').value;
+    var plantSowDateInput = document.getElementById('plantSowDateInput').value;
+    germination.data.createPlantObjectTemplate(seasonNameInput, plantNameInput, plantGerminationTimeInput, plantHarvestTimeInput, plantSowDateInput );
+    if(template) {
+      template.remove();
+      data.style.display = 'block';
+    }
+  },
+
+  addAnotherPlant(parent){
+    var plantNameInput = document.createElement('input');
+    var plantGerminationTimeInput = document.createElement('input');
+    var plantHarvestTimeInput = document.createElement('input');
+    var plantSowDateInput = document.createElement('input');
+
+    //plantNameInput.id = 'plantNameInput';
+    plantNameInput.placeholder = 'Plant Name';
+    plantNameInput.onfocus = germination.events.removeListener;
+    plantNameInput.onblur = germination.events.addListener;
+    //plantGerminationTimeInput.id = 'plantGerminationTimeInput';
+    plantGerminationTimeInput.placeholder = 'Days Until Germination';
+    plantGerminationTimeInput.type = 'number';
+    plantGerminationTimeInput.onfocus = germination.events.removeListener;
+    plantGerminationTimeInput.onblur = germination.events.addListener;
+    //plantHarvestTimeInput.id = 'plantHarvestTimeInput';
+    plantHarvestTimeInput.placeholder = 'Days Until Harvest';
+    plantHarvestTimeInput.type = 'number';
+    plantHarvestTimeInput.onfocus = germination.events.removeListener;
+    plantHarvestTimeInput.onblur = germination.events.addListener;
+    //plantSowDateInput.id = 'plantSowDateInput';
+    plantSowDateInput.placeholder = 'Date Planted (mm/dd/yyyy)';
+    plantSowDateInput.onkeyup = function(event){ console.log(event.keyCode); if(plantSowDateInput.value.length === 2 || plantSowDateInput.value.length === 5 ){ if(event.keyCode == 8) { return; } plantSowDateInput.value += '/'; } };
+    plantSowDateInput.onfocus = germination.events.removeListener;
+    plantSowDateInput.onblur = germination.events.addListener;
+
+    div.appendChild(plantNameInput);
+    div.appendChild(plantGerminationTimeInput);
+    div.appendChild(plantHarvestTimeInput);
+    div.appendChild(plantSowDateInput);
+  }
+}

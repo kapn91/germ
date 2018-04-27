@@ -3,9 +3,8 @@ const path = require('path');
 const url = require('url');
 
 var germination = {
-  //check for data
-  //get data
-  //load data
+
+  //initialize germ application
   init(){
     germination.calendar.gatherDate();
     germination.data.checkData();
@@ -13,18 +12,11 @@ var germination = {
     germination.data.getKey(germination.data.latest);
     germination.view.loadSeason();
     germination.view.loadContent();
-  },
-
-  createNewSeason(){
-    console.log('createNewSeason');
-  },
-
-  loadExistingSeason(){
-    console.log('loadExistingSeason');
-  },
-
-  createNewPlant(){
-    console.log('createNewPlant');
+    germination.events.addListener();
   }
+
+  //update(){
+
+  //}
 
 }
