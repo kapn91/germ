@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/beaubaker1027/germ/issues"
   },
-  "homepage": "https://github.com/beaubaker1027/germ#readme"
+  "homepage": "https://github.com/beaubaker1027/germ#readme",
+  "dependencies": {
+    "electron": "^1.8.6"
+  }
 }
