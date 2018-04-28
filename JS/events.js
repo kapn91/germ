@@ -8,6 +8,13 @@ germination.events = {
     document.removeEventListener('keypress', germination.events.keyPress, true);
   },
 
+  changeActive(){
+      currentActive = pl.getElementsByClassName('active')[0];
+      currentActive.classList.remove('active');
+      event.target.classList.add('active');
+      germination.view.loadPlantData();
+  },
+
   keyPress(x){
     console.log(x)
     x.preventDefault();
