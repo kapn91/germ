@@ -10,6 +10,7 @@ germination.events = {
 
   keyPress(x){
     console.log(x)
+    x.preventDefault();
     switch(x.key){
       case 'l':
         germination.view.createTemplate('load');
