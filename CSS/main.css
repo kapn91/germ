@@ -16,7 +16,7 @@ input:focus { outline: none; background-color: #2dd288; }
 #sb .plant { cursor: default; margin: 5px 15px; text-align: center; font-family: Raleway; font-weight: 300; color: white; text-transform: capitalize; }
 #sb .plant:hover { color: black; }
 #sb .plant:active { color: white; }
-#sb .active { background-color: #2dd288; }
+#sb .active { color: #2dd288; }
 #sb .active:hover { color: white; }
 #sb #pl { margin: 0; padding: 0; }
 #sb button { position: absolute; bottom: 15px; margin-right: 15px; }
