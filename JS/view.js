@@ -18,18 +18,23 @@ germination.view = {
 
   loadPlants(key){
     let storage = JSON.parse(localStorage.getItem(key));
-    var first_iteration = true;
     for(let prop in storage){
       if(prop === 'season'){ continue; }
       let li = document.createElement('li');
       li.className = 'plant';
       li.innerHTML = prop;
+      li.onclick = germination.events.changeActive;
       pl.appendChild(li)
-      if(first_iteration){
-        li.classList.add('active')
-      }
-      first_iteration = false;
     }
+    pl.lastChild.classList.add('active');
+    germination.view.loadPlantData();
+  },
+
+  loadPlantData(){
+    var active = document.getElementsByClassName('active')[0].innerHTML.toLowerCase();
+    var object = germination.data.getPlantData(season.innerHTML, active);
+    console.log(object);
+
   },
 
   loadContent(){
