@@ -1,5 +1,4 @@
-localStorage.clear();
-
+//localStorage.remove();
 
 germination.data = {
 
@@ -12,7 +11,7 @@ germination.data = {
       }
       var a = 'tomato';
       obj[a] = {
-        name: a,
+        name: a.toLowerCase() + ' ' + germination.calendar.current_month_name.toLowerCase() + ' ' + germination.calendar.current_day,
         harvestTime: 45,
         germinationTime: 7,
         plantDate: new Date(germination.calendar.current_month_name + ' ' + germination.calendar.current_day + ' ' + germination.calendar.current_year).toDateString()
@@ -43,7 +42,17 @@ germination.data = {
       let hasValue = key in localStorage;
       if(!hasValue) { alert('Key Not Found'); return; };
       this.key = JSON.parse(localStorage.getItem(key))
-      console.log(this.key);
+      return this.key
+    }
+  },
+  // grabs active plant data
+  getPlantData(key, subkey){
+    germination.data.getKey(key);
+    if(this.dataExists && this.key){
+      let hasValue = subkey in this.key;
+      if(!hasValue) { alert('SubKey Not Found'); return; };
+      var object = this.key[subkey];
+      return object;
     }
   },
   // set new data
@@ -64,6 +73,7 @@ germination.data = {
     console.log(localStorage);
   },
 
+  // creates a new plant to store in season
   createPlantObjectTemplate(seasonName, plantName, plantGerminationTime, plantHarvestTime, plantSowDate ){
     console.log(seasonName);
     var obj = JSON.parse(localStorage.getItem(seasonName));
@@ -75,7 +85,7 @@ germination.data = {
       localStorage.setItem(obj.season, JSON.stringify(obj));
     }
     obj[plantName] = {
-      name: plantName,
+      name: plantName.toLowerCase() + ' ' + month_name[new Date(plantSowDate).getMonth()].toLowerCase() + ' ' + new Date(plantSowDate).getDate(),
       germinationTime: plantGerminationTime,
       harvestTime: plantHarvestTime,
       plantDate: new Date(plantSowDate).toDateString(),
@@ -89,7 +99,8 @@ germination.data = {
     }
   },
 
-  removeData(master, key){
+  // removes plant from season
+  removeData(key, subkey){
     /*let k = JSON.parse(localStorage.getItem(master))[key];
     localStorage.setItem(master[key], JSON.stringify('beau'));
     console.log(JSON.parse(localStorage.getItem(master[key])));
