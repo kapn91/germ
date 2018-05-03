@@ -107,6 +107,14 @@ germination.data = {
 
   // removes plant from season
   removeData(key, subkey){
+    console.log(key);
+    console.log(subkey);
+    let k = JSON.parse(localStorage.getItem(key));
+    console.log(k);
+    delete k[subkey];
+    console.log(k);
+    localStorage.setItem(key, JSON.stringify(k));
+    germination.view.loadSeason(key);
     /*let k = JSON.parse(localStorage.getItem(master))[key];
     localStorage.setItem(master[key], JSON.stringify('beau'));
     console.log(JSON.parse(localStorage.getItem(master[key])));

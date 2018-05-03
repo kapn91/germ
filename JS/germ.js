@@ -1,4 +1,4 @@
-const {app, remote} = require('electron').remote
+const {app, remote, dialog} = require('electron').remote
 const path = require('path');
 const url = require('url');
 

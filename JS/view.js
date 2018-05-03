@@ -26,19 +26,28 @@ germination.view = {
     for(let prop in storage){
       if(prop === 'season'){ continue; }
       let li = document.createElement('li');
+      let button = document.createElement('button');
+      button.innerHTML = 'X';
+      button.className = 'remove';
+      button.onclick = function(event){ germination.view.showMessage(seasonName.innerHTML, event.target.parentElement.childNodes[0].nodeValue.toLowerCase())};
       li.className = 'plant';
       li.innerHTML = prop;
-      li.onclick = germination.events.changeActive;
-      pl.appendChild(li)
+      li.onclick = function(event){ if(event.target.tagName != 'BUTTON') {germination.events.changeActive()}};
+      pl.appendChild(li);
+      li.appendChild(button);
     }
-    pl.lastChild.classList.add('active');
-    germination.view.loadPlantData();
+    lastList = pl.getElementsByTagName('li')
+    if(lastList.length != 0){
+      lastList[lastList.length - 1].classList.add('active');
+      germination.view.loadPlantData();
+    }
   },
 
   loadPlantData(){
     germination.view.clearSection(plantData);
-    var active = document.getElementsByClassName('active')[0].innerHTML.toLowerCase();
+    var active = document.getElementsByClassName('active')[0].childNodes[0].nodeValue.toLowerCase();
     console.log(season.innerHTML);
+    console.log(active);
     var object = germination.data.getPlantData(seasonName.innerHTML, active);
     console.log(object);
     var ul = document.createElement('ul');
@@ -138,6 +147,19 @@ germination.view = {
     while(section.firstChild) {
       section.removeChild(section.firstChild);
     }
+  },
+
+  showMessage(season, plant){
+    dialog.showMessageBox({
+      type: 'question',
+      buttons: ['Yes', 'No'],
+      title: 'Confirm',
+      message: 'Are you sure you want to delete this plant?'
+    }, function(response){
+      if(response === 0) { // if 'Yes'
+        germination.data.removeData(season, plant);
+      }
+    })
   },
 
 }
