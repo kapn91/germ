@@ -4,6 +4,7 @@ germination.plant = {
 
   createNewPlant(){
     if(data.style.display === 'none'){ return; }
+    var dataHeight = data.offsetHeight;
     var div = document.createElement('div');
     var plantNameInput = document.createElement('input');
     var plantGerminationTimeInput = document.createElement('input');
@@ -12,6 +13,7 @@ germination.plant = {
     var submitButton = document.createElement('button');
     var cancelButton = document.createElement('button');
     div.id = 'template';
+    div.style.height = dataHeight+'px';
     plantNameInput.id = 'plantNameInput';
     plantNameInput.placeholder = 'Plant Name';
     plantNameInput.onfocus = germination.events.removeListener;

@@ -15,8 +15,8 @@ input:focus { outline: none; background-color: #2dd288; }
 #head h1 { cursor: default; font-size: 40px; line-height: 82px; text-align: center; color: white; font-family: Raleway; font-weight: 200; margin: 0; padding: 0; }
 
 /*sidebar*/
-#sb { position: relative; float: left; border-right: 1px white solid; height: 85%; width: 30%; margin: 0; padding: 0; overflow: auto; }
-#sb h1 { cursor: default; margin: 0 15px; text-align: center; color: white; font-family: Raleway; font-weight: 100; border-bottom: .1px solid; }
+#sb { position: relative; float: left; /*border-right: 1px #2dd288 solid;*/ height: 85%; width: 30%; margin: 0; padding: 0; overflow: auto; }
+#sb h1 { cursor: default; margin: 0 15px 15px 15px; text-align: center; color: white; font-family: Raleway; font-weight: 100; /*border-bottom: .1px solid;*/ }
 #sb .plant { cursor: default; margin: 5px 15px; text-align: center; font-family: Raleway; font-weight: 300; color: white; text-transform: capitalize; }
 /*#sb .plant:hover { color: black; }*/
 #sb .plant:active { color: white; }
@@ -52,7 +52,7 @@ input:focus { outline: none; background-color: #2dd288; }
 #content #calendar table tr td:last-of-type { border: none; }
 #content #calendar table tr td div { display: inline-block; width: auto;  margin: 0; padding: 0; }
 #content #calendar table tr td div:hover { color: #a29944; }
-#content #template { width: 80%; max-height: 40%; margin: 0 auto; font-weight: 100; overflow-x: auto; }
+#content #template { position: relative; width: 80%; max-height: 40%; margin: 0 auto; font-weight: 100; overflow-x: auto; }
 #content #template #newPlantObject { }
 #content #template input { float: left; clear: both; margin: 0 0 15px 0; }
 #content #template button { float: right; }

@@ -4,6 +4,7 @@ germination.season = {
 
   createNewSeason(){
     if(data.style.display === 'none'){ return; }
+    var dataHeight = data.offsetHeight;
     data.style.display = 'none';
     var div = document.createElement('div');
     var seasonNameInput = document.createElement('input');
@@ -15,6 +16,7 @@ germination.season = {
     var submitButton = document.createElement('button');
     var cancelButton = document.createElement('button');
     div.id = 'template';
+    div.style.height = dataHeight+'px';
     content.insertBefore(div,content.firstChild);
     seasonNameInput.id = 'seasonNameInput';
     seasonNameInput.placeholder = 'Season Name';
@@ -61,10 +63,12 @@ germination.season = {
 
   loadExistingSeasonTemplate(){
     if(data.style.display === 'none'){ return; }
+    var dataHeight = data.offsetHeight;
     data.style.display = 'none';
     var div = document.createElement('div');
     var cancelButton = document.createElement('button');
     div.id = 'template';
+    div.style.height = dataHeight+'px';
     cancelButton.id = 'cancelButton';
     cancelButton.innerHTML = 'Cancel';
     cancelButton.onclick = germination.view.removeTemplate;
