@@ -123,7 +123,7 @@ germination.calendar = {
           var td = document.createElement('td');
           var span = document.createElement('div');
           if(count>germination.calendar.days_in_month){
-            tr.appendChild(td);
+            //tr.appendChild(td);
             break;
           }
           td.id = count;
