@@ -6,7 +6,7 @@ let win;
 const index = `file://${__dirname}/index.html`
 
 function createWindow() {
-  win = new BrowserWindow({width: 1000, height: 800, resizable: false, frame: false});
+  win = new BrowserWindow({width: 1000, height: 600, resizable: false, frame: false});
   win.loadURL(index);
 
   win.on('closed', () => {
