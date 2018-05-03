@@ -9,15 +9,19 @@ button:active { color: white; }
 input { background-color: white; border: none; }
 input:focus { outline: none; background-color: #2dd288; }
 
-#head { height: 10%; width: 100%; margin: 0; padding: 0; -webkit-app-region: drag; }
+
+/*header*/
+#head { height: 15%; width: 100%; margin: 0; padding: 0; -webkit-app-region: drag; }
 #head h1 { cursor: default; font-size: 40px; line-height: 82px; text-align: center; color: white; font-family: Raleway; font-weight: 200; margin: 0; padding: 0; }
-#sb { position: relative; float: left; border-right: 1px white solid; height: 90%; width: 30%; margin: 0; padding: 0; overflow: auto; }
+
+/*sidebar*/
+#sb { position: relative; float: left; border-right: 1px white solid; height: 85%; width: 30%; margin: 0; padding: 0; overflow: auto; }
 #sb h1 { cursor: default; margin: 0 15px; text-align: center; color: white; font-family: Raleway; font-weight: 100; border-bottom: .1px solid; }
 #sb .plant { cursor: default; margin: 5px 15px; text-align: center; font-family: Raleway; font-weight: 300; color: white; text-transform: capitalize; }
 #sb .plant:hover { color: black; }
 #sb .plant:active { color: white; }
 #sb .active { color: #2dd288; }
-#sb .active:hover { color: white; }
+#sb .active:hover { color: #2dd288; }
 #sb #pl { margin: 0; padding: 0; }
 #sb button { position: absolute; bottom: 15px; margin-right: 15px; }
 #sb button:hover { color: black; }
@@ -25,10 +29,16 @@ input:focus { outline: none; background-color: #2dd288; }
 #sb #season { left: 15px; }
 #sb #load { left: 50%; transform: translateX(-50%);}
 #sb #add { right: 15px; }
-#content { display: flex; flex-flow: column; height: 90%; margin: 0; padding: 0; overflow: hidden; }
+
+/*content*/
+#content { display: flex; flex-flow: column; height: 85%; margin: 0; padding: 0; overflow: hidden; }
 /*#content div { display: inline-block; width: 100%; }*/
-#content #data { min-height: 40%; height: 40%; width: 80%; margin: 0 auto; padding: 0; color: white; font-weight: 100; }
-#content #data div { background-color: white; width: 100%; height: 100%; margin: 0; padding: 0; }
+#content #data { position: relative; width: 80%; margin: 0 auto; padding: 0; color: white; font-weight: 100; }
+#content #data #plantData { float: left; width: 70%; margin: 0; padding: 0; height: 100%; background-color: #2dd288; }
+#content #data .data { text-transform: capitalize; margin: 10px 0 10px 15px; padding: 0; }
+#content #data .visual { background-position: center; background-repeat: no-repeat; background-size: contain; position: absolute; right: 0; top: 0; width: 30%; min-height: 100%; margin: 0; padding: 0; }
+#content #data #plantName { font-size: 40px; margin-bottom: 15px; font-weight: 100; }
+#content #data li { font-size: 25px; }
 #content #calendar { cursor: default; color: white; flex: 1; height: 60%; margin: 0; padding: 0;  }
 #content #calendar table { display: block; padding: 0; width: 80%; margin: 30px auto 0px auto; height: calc(100% - 30px); }
 #content #calendar table tr { font-size: 0; display: block; }
