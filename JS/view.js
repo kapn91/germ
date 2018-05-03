@@ -1,18 +1,23 @@
 const pl = document.getElementById('pl');
-const season = document.getElementById('season')
+const seasonName = document.getElementById('seasonName');
 const content = document.getElementById('content');
 const data = document.getElementById('data');
 const calendar = document.getElementById('calendar');
+const plantData = document.getElementById('plantData');
+const plantImg = document.getElementById('plantImg');
 
 germination.view = {
 
   loadSeason(season){
-    germination.view.clearSideBar();
+    console.log(seasonName);
+    germination.view.clearSection(pl);
     var latest = season? season:germination.data.latest;
+    console.log(latest);
     var season = document.createElement('h1');
-    season.id = 'season';
-    season.innerHTML = latest;
-    pl.appendChild(season);
+    seasonName.id = 'season';
+    seasonName.innerHTML = latest;
+    pl.appendChild(seasonName);
+    console.log(seasonName);
     germination.view.loadPlants(latest);
   },
 
@@ -31,10 +36,64 @@ germination.view = {
   },
 
   loadPlantData(){
+    germination.view.clearSection(plantData);
     var active = document.getElementsByClassName('active')[0].innerHTML.toLowerCase();
-    var object = germination.data.getPlantData(season.innerHTML, active);
+    console.log(season.innerHTML);
+    var object = germination.data.getPlantData(seasonName.innerHTML, active);
     console.log(object);
+    var ul = document.createElement('ul');
+    var plantName = document.createElement('h2');
+    var plantStatus = document.createElement('li');
+    var plantDate = document.createElement('li');
+    var harvestDate = document.createElement('li');
+    var status = germination.view.loadPlantGrowthStage(object);
+    console.log(status);
+    plantName.id = 'plantName';
+    plantName.innerHTML = object.name;
+    plantName.className = 'data';
+    plantStatus.id = 'plantStatus';
+    plantStatus.innerHTML = 'Plant Stage: '+status;
+    plantStatus.className = 'data';
+    plantDate.id = 'plantDate';
+    plantDate.innerHTML = 'Plant Date: '+object.plantDate;
+    plantDate.className = 'data';
+    harvestDate.id = 'harvestDate';
+    harvestDate.innerHTML = 'Harvest Date: '+object.harvestDate;
+    harvestDate.className = 'data';
+    ul.appendChild(plantName);
+    ul.appendChild(plantStatus);
+    ul.appendChild(plantDate);
+    ul.appendChild(harvestDate);
+    plantData.appendChild(ul);
+  },
 
+  loadPlantGrowthStage(plant){
+    var plantDate = new Date(plant.plantDate).getTime();
+    var date = germination.calendar.current.getTime();
+    var germinationDate = ( plantDate + (86400000 * plant.germinationTime));
+    var germinationWeek = germinationDate + (86400000 * 7);
+    var harvestTime = (plantDate + (86400000 * (plant.harvestTime - 3)));
+    var postHarvest = harvestTime + (86400000 * 10);
+    var status;
+    console.log(plantImg.offsetWidth);
+    //width: 168
+    console.log(plantImg.offsetHeight);
+    //height: 288
+    console.log(new Date(date).toDateString());
+    console.log('date: ' +date);
+    console.log(new Date(germinationDate).toDateString());
+    console.log('germinationDate: ' +germinationDate);
+    console.log(new Date(germinationWeek).toDateString());
+    console.log('germinationWeek: ' +germinationWeek);
+    console.log(new Date(harvestTime).toDateString());
+    console.log('harvestTime: ' +harvestTime);
+    console.log(new Date(postHarvest).toDateString());
+    console.log('postHarvest: ' +postHarvest);
+    if(date > postHarvest){ plantImg.style.backgroundImage = 'url("media/Img/dead.png")'; status = 'dead'; return status; } else
+    if(date > harvestTime){ plantImg.style.backgroundImage = 'url("media/Img/harvest.png")';status = 'harvest'; return status; } else
+    if(date > germinationWeek){ plantImg.style.backgroundImage = 'url("media/Img/growing.png")'; status = 'growing'; return status; } else
+    if(date > germinationDate){ plantImg.style.backgroundImage = 'url("media/Img/sprout.png")'; status = 'sprout'; return status; }
+    else { plantImg.style.backgroundImage = 'url("media/Img/seed.png")'; status = 'seed'; return status; }
   },
 
   loadContent(){
@@ -75,10 +134,10 @@ germination.view = {
     parentObject.remove();
   },
 
-  clearSideBar(){
-    while(pl.firstChild) {
-      pl.removeChild(pl.firstChild);
+  clearSection(section){
+    while(section.firstChild) {
+      section.removeChild(section.firstChild);
     }
-  }
+  },
 
 }

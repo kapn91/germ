@@ -1,4 +1,4 @@
-//localStorage.remove();
+//localStorage.clear();
 
 germination.data = {
 
@@ -9,15 +9,17 @@ germination.data = {
       var obj = {
         season: germination.calendar.current_year
       }
+      localStorage.setItem(obj.season, JSON.stringify(obj));
       var a = 'tomato';
       obj[a] = {
-        name: a.toLowerCase() + ' ' + germination.calendar.current_month_name.toLowerCase() + ' ' + germination.calendar.current_day,
+        name: a.toLowerCase(),
+        nameDate: a.toLowerCase() + ' ' + germination.calendar.current_month_name.toLowerCase() + ' ' + germination.calendar.current_day,
         harvestTime: 45,
         germinationTime: 7,
         plantDate: new Date(germination.calendar.current_month_name + ' ' + germination.calendar.current_day + ' ' + germination.calendar.current_year).toDateString()
       };
-      obj[a].harvestDate = new Date(new Date(obj[a].plantDate).getTime() + (86400000 * obj[a].harvestTime)).toDateString();
-      localStorage.setItem(obj.season, JSON.stringify(obj));
+      obj[a].harvestDate = new Date(new Date(obj[a].plantDate).getTime() + (86400000 * obj[a].harvestTime) + (86400000 * obj[a].germinationTime)).toDateString();
+      germination.data.setData(obj.season, obj[a]);
       this.dataExists = true;
     }
     this.latest = localStorage.key(localStorage.length - 1);
@@ -47,8 +49,11 @@ germination.data = {
   },
   // grabs active plant data
   getPlantData(key, subkey){
+    console.log(key);
+    console.log(subkey);
     germination.data.getKey(key);
     if(this.dataExists && this.key){
+      console.log(this.key);
       let hasValue = subkey in this.key;
       if(!hasValue) { alert('SubKey Not Found'); return; };
       var object = this.key[subkey];
@@ -67,7 +72,7 @@ germination.data = {
     var stored = JSON.parse(localStorage.getItem(key));
     console.log(stored);
     console.log(value);
-    stored[value.name] = value;
+    stored[value.nameDate] = value;
     localStorage.setItem(key, JSON.stringify(stored));
     //germination.view.loadPlants(document.getElementById('season').innerHTML);
     console.log(localStorage);
@@ -85,12 +90,13 @@ germination.data = {
       localStorage.setItem(obj.season, JSON.stringify(obj));
     }
     obj[plantName] = {
-      name: plantName.toLowerCase() + ' ' + month_name[new Date(plantSowDate).getMonth()].toLowerCase() + ' ' + new Date(plantSowDate).getDate(),
+      name: plantName.toLowerCase(),
+      nameDate: plantName.toLowerCase() + ' ' + month_name[new Date(plantSowDate).getMonth()].toLowerCase() + ' ' + new Date(plantSowDate).getDate(),
       germinationTime: plantGerminationTime,
       harvestTime: plantHarvestTime,
       plantDate: new Date(plantSowDate).toDateString(),
     }
-    obj[plantName].harvestDate = new Date(new Date(obj[plantName].plantDate).getTime() + (86400000 * plantHarvestTime)).toDateString();
+    obj[plantName].harvestDate = new Date(new Date(obj[plantName].plantDate).getTime() + (86400000 * obj[plantName].harvestTime)).toDateString();
     if(obj.season !== '' || obj[plantName].name !== ''){
       console.log(obj.season);
       console.log(obj);
