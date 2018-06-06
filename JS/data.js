@@ -72,7 +72,7 @@ germination.data = {
     var stored = JSON.parse(localStorage.getItem(key));
     console.log(stored);
     console.log(value);
-    stored[value.nameDate] = value;
+    stored[value.name] = value;
     localStorage.setItem(key, JSON.stringify(stored));
     //germination.view.loadPlants(document.getElementById('season').innerHTML);
     console.log(localStorage);

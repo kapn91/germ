@@ -90,6 +90,7 @@ germination.calendar = {
         tr.appendChild(left_button);
         tr.appendChild(right_button);
         tr.style.height = 'calc('+100+'%/'+standard_row+')';
+        tr.classList.add('heading');
         return tr;
         break;
 
@@ -112,7 +113,7 @@ germination.calendar = {
             span.innerHTML = count;
             td.appendChild(span);
             tr.appendChild(td);
-            tr.style.height = 'calc('+100+'%/'+standard_row+')';
+            tr.style.height = 'calc('+100+'%'/+standard_row+')';
             count++
           }
           return tr;

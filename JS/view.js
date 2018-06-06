@@ -23,18 +23,27 @@ germination.view = {
 
   loadPlants(key){
     let storage = JSON.parse(localStorage.getItem(key));
+    console.log(storage);
     for(let prop in storage){
       if(prop === 'season'){ continue; }
+      let div = document.createElement('div');
       let li = document.createElement('li');
       let button = document.createElement('button');
+      let span = document.createElement('span');
+      div.className = 'plant';
       button.innerHTML = 'X';
       button.className = 'remove';
       button.onclick = function(event){ germination.view.showMessage(seasonName.innerHTML, event.target.parentElement.childNodes[0].nodeValue.toLowerCase())};
-      li.className = 'plant';
+      //li.className = 'plant';
       li.innerHTML = prop;
       li.onclick = function(event){ if(event.target.tagName != 'BUTTON') {germination.events.changeActive()}};
-      pl.appendChild(li);
+      console.log(storage[prop].plantDate);
+      span.className = 'creation';
+      span.innerHTML = 'created: ' +storage[prop].plantDate;
+      pl.appendChild(div);
+      div.appendChild(li);
       li.appendChild(button);
+      div.appendChild(span);
     }
     lastList = pl.getElementsByTagName('li')
     if(lastList.length != 0){
