@@ -155,11 +155,11 @@ germination.view = {
     console.log('harvestTime: ' +harvestTime);
     console.log(new Date(postHarvest).toDateString());
     console.log('postHarvest: ' +postHarvest);
-    if(date > postHarvest){ plantImg.style.backgroundImage = 'url("media/Img/dead.png")'; status = 'dead'; return status; } else
-    if(date > harvestTime){ plantImg.style.backgroundImage = 'url("media/Img/harvest.png")';status = 'harvest'; return status; } else
-    if(date > germinationWeek){ plantImg.style.backgroundImage = 'url("media/Img/growing.png")'; status = 'growing'; return status; } else
-    if(date > germinationDate){ plantImg.style.backgroundImage = 'url("media/Img/sprout.png")'; status = 'sprout'; return status; }
-    else { plantImg.style.backgroundImage = 'url("media/Img/seed.png")'; status = 'seed'; return status; }
+    if(date > postHarvest){ status = 'dead'; return status; } else
+    if(date > harvestTime){ status = 'harvest'; return status; } else
+    if(date > germinationWeek){ status = 'growing'; return status; } else
+    if(date > germinationDate){ status = 'sprout'; return status; }
+    else { status = 'seed'; return status; }
   },
 
   loadContent(){
