@@ -16,8 +16,4 @@ var germination = {
     germination.events.addListener();
   }
 
-  //update(){
-
-  //}
-
 }

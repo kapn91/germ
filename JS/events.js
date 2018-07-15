@@ -16,7 +16,6 @@ germination.events = {
   },
 
   keyPress(x){
-    console.log(x)
     x.preventDefault();
     switch(x.key){
       case 'l':
@@ -35,6 +34,7 @@ germination.events = {
         break;
       case 'e':
         germination.view.createTemplate('edit');
+        break;
     }
   }
 }

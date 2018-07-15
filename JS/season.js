@@ -2,6 +2,7 @@ require(path.resolve('JS/view.js'));
 
 germination.season = {
 
+  //create a new season
   createNewSeason(){
     if(data.style.display === 'none'){ return; }
     var dataHeight = data.offsetHeight;
@@ -61,6 +62,7 @@ germination.season = {
     seasonNameInput.focus();
   },
 
+  //load and existing season
   loadExistingSeasonTemplate(){
     if(data.style.display === 'none'){ return; }
     var dataHeight = data.offsetHeight;
@@ -86,12 +88,12 @@ germination.season = {
       wrapper.appendChild(button);
       wrapper.appendChild(remove);
       div.appendChild(wrapper);
-      console.log(prop);
     }
     div.appendChild(cancelButton);
     content.insertBefore(div, content.firstChild);
   },
 
+  //submit new season to data
   submitNewSeason(){
     var template = document.getElementById('template');
     var seasonNameInput = document.getElementById('seasonNameInput').value;
@@ -106,27 +108,25 @@ germination.season = {
     }
   },
 
+  //add another plant when creating a season
   addAnotherPlant(parent){
     var plantNameInput = document.createElement('input');
     var plantGerminationTimeInput = document.createElement('input');
     var plantHarvestTimeInput = document.createElement('input');
     var plantSowDateInput = document.createElement('input');
 
-    //plantNameInput.id = 'plantNameInput';
+
     plantNameInput.placeholder = 'Plant Name';
     plantNameInput.onfocus = germination.events.removeListener;
     plantNameInput.onblur = germination.events.addListener;
-    //plantGerminationTimeInput.id = 'plantGerminationTimeInput';
     plantGerminationTimeInput.placeholder = 'Days Until Germination';
     plantGerminationTimeInput.type = 'number';
     plantGerminationTimeInput.onfocus = germination.events.removeListener;
     plantGerminationTimeInput.onblur = germination.events.addListener;
-    //plantHarvestTimeInput.id = 'plantHarvestTimeInput';
     plantHarvestTimeInput.placeholder = 'Days Until Harvest';
     plantHarvestTimeInput.type = 'number';
     plantHarvestTimeInput.onfocus = germination.events.removeListener;
     plantHarvestTimeInput.onblur = germination.events.addListener;
-    //plantSowDateInput.id = 'plantSowDateInput';
     plantSowDateInput.placeholder = 'Date Planted (mm/dd/yyyy)';
     plantSowDateInput.onkeyup = function(event){ console.log(event.keyCode); if(plantSowDateInput.value.length === 2 || plantSowDateInput.value.length === 5 ){ if(event.keyCode == 8) { return; } plantSowDateInput.value += '/'; } };
     plantSowDateInput.onfocus = germination.events.removeListener;

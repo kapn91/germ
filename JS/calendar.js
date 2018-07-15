@@ -5,6 +5,7 @@ const days_of_week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 germination.calendar = {
 
+  //gathers dates
   gatherDate(){
     this.current = new Date();
     this.month = this.current.getMonth();
@@ -19,6 +20,7 @@ germination.calendar = {
     this.days_in_month = new Date(this.current_year, this.month+1, 0).getDate();
   },
 
+  //allows for calendar to change year
   gatherOtherDate(offset_month){
     var offset_year = 0;
     germination.calendar.month += offset_month;
@@ -44,6 +46,7 @@ germination.calendar = {
     }
   },
 
+  //creates calendar
   createCalendar(){
     var table = document.createElement('table');
     if(document.getElementById('table')){
@@ -68,6 +71,7 @@ germination.calendar = {
     calendar.appendChild(table);
   },
 
+  //fills rows with headings or dates
   fillRows(row, table, tr, standard_row){
     var left_button = document.createElement('button');
     var right_button = document.createElement('button');

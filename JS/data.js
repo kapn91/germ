@@ -1,5 +1,3 @@
-//localStorage.clear();
-
 germination.data = {
 
   //check for data session
@@ -24,7 +22,6 @@ germination.data = {
     }
     this.latest = localStorage.key(localStorage.length - 1);
     this.dataExists = true;
-    console.log(this.latest);
   },
 
   // gather all data
@@ -49,11 +46,8 @@ germination.data = {
   },
   // grabs active plant data
   getPlantData(key, subkey){
-    console.log(key);
-    console.log(subkey);
     germination.data.getKey(key);
     if(this.dataExists && this.key){
-      console.log(this.key);
       let hasValue = subkey in this.key;
       if(!hasValue) { alert('SubKey Not Found'); return; };
       var object = this.key[subkey];
@@ -66,23 +60,16 @@ germination.data = {
       let obj = {};
       obj[value.name] = value
       localStorage.setItem(key, JSON.stringify(obj));
-      console.log(JSON.parse(localStorage[key]));
       return
     }
     var stored = JSON.parse(localStorage.getItem(key));
-    console.log(stored);
-    console.log(value);
     stored[value.name] = value;
     localStorage.setItem(key, JSON.stringify(stored));
-    //germination.view.loadPlants(document.getElementById('season').innerHTML);
-    console.log(localStorage);
   },
 
   // creates a new plant to store in season
   createPlantObjectTemplate(seasonName, plantName, plantGerminationTime, plantHarvestTime, plantSowDate ){
-    console.log(seasonName);
     var obj = JSON.parse(localStorage.getItem(seasonName));
-    console.log(obj);
     if(obj == undefined){
       obj = {
         season: seasonName,
@@ -98,8 +85,6 @@ germination.data = {
     }
     obj[plantName].harvestDate = new Date(new Date(obj[plantName].plantDate).getTime() + (86400000 * obj[plantName].harvestTime)).toDateString();
     if(obj.season !== '' || obj[plantName].name !== ''){
-      console.log(obj.season);
-      console.log(obj);
       germination.data.setData(obj.season, obj[plantName]);
       germination.view.loadSeason(obj.season);
     }
@@ -107,81 +92,18 @@ germination.data = {
 
   // removes plant from season
   removeData(key, subkey){
-    console.log(key);
-    console.log(subkey);
     if(subkey != null){
       let k = JSON.parse(localStorage.getItem(key));
-      console.log(k);
       delete k[subkey];
-      console.log(k);
       localStorage.setItem(key, JSON.stringify(k));
       germination.view.loadSeason(key);
     } else if(subkey == null){
-      console.log('subkey = null');
       localStorage.removeItem(key);
-      console.log(localStorage);
       germination.view.loadSeason();
 
     } else {
       return;
     }
-    /*let k = JSON.parse(localStorage.getItem(master))[key];
-    localStorage.setItem(master[key], JSON.stringify('beau'));
-    console.log(JSON.parse(localStorage.getItem(master[key])));
-    localStorage.removeItem(master[key]);
-    console.log(JSON.parse(localStorage.getItem(master[key])));
-    console.log(JSON.parse(localStorage.getItem(master)));*/
 
   }
 };
-/*
-/*var season = []
-var Beau = {
-  name: "Beau",
-  gender: "male",
-  height: 6+"ft"+" "+2+"in",
-  species: "human",
-  eyeColor: "blue"
-};
-
-var season18 = {
-
-}
-
-var Rachel = {
-  name: "Rachel",
-  gender: "Female",
-  height: 5+"ft"+" "+1+"in",
-  species: "human",
-  eyeColor: "blueGray"
-};
-
-console.log(app.getPath('userData'));
-console.log(app.getPath('documents'));
-localStorage.setItem('me', JSON.stringify(Beau));
-var me = JSON.parse(localStorage.getItem('me'));
-console.log(me);
-console.log(me.name);
-console.log(localStorage.getItem('now'));
-console.log(me);
-
-//Beau.weight = 155+"lbs";
-
-//if(localStorage.getItem('me'))
-for (let i=0; i<localStorage.length; i++){
-  let k = localStorage.key(i);
-  console.log(k);
-  var v = JSON.parse(localStorage.getItem(k));
-  console.log(v);
-  plants.push(v)
-}
-
-console.log(plants);
-console.log(plants[0].name);
-
-console.log(localStorage.key(localStorage.length - 1));
-//check for data
-//get data
-//load data
-* /
-*/
