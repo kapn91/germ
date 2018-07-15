@@ -1,11 +1,11 @@
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-Regular.ttf') format("truetype"); }
-/*@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; }
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
-@@font-face { font-family: 'Raleway'; src: url('Fonts/Raleway/Raleway-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }*/
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-Thin.ttf') format("truetype"); font-weight: 100; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: Raleway; src: url('Fonts/Raleway/Raleway-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
 
 
 html, body { width: 100%; height: 100%; margin: 0; padding: 0; font-family: Raleway, monospace; background-color: #59a683; user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; -o-user-select: none; }
@@ -20,14 +20,17 @@ input:focus { outline: none; background-color: #2dd288; }
 
 
 /*header*/
-#head { height: 10%; width: 100%; margin: 0; padding: 0; -webkit-app-region: drag; }
+#head { position: relative; height: 10%; width: 100%; margin: 0; padding: 0; -webkit-app-region: drag; }
 #head h1 { cursor: default; font-size: 40px; line-height: 82px; text-transform: uppercase; text-align: center; color: white; font-weight: 100; margin: 0; padding: 0; }
+#head #author { font-size: 14px; cursor: default; text-align: right; display: block; position: absolute; top: 50%; right: 15px; transform: translateY(-50%); transition: opacity 1s linear 4s; }
+#head #author p { margin: 0; padding: 0; color: white; }
+#head #author a { text-decoration: none; color: white; }
+#head #author:hover { opacity: 1 !important; }
 
 /*sidebar*/
 #sb { position: relative; float: left; /*border-right: 1px #2dd288 solid;*/ height: 60%; width: 20%; margin: 0; padding: 0; overflow: auto; }
 #sb h1 { cursor: default; margin: 5% 15px 15px 15px; text-align: left; color: white; font-weight: 100; font-size: 24px; /*border-bottom: .1px solid;*/}
 #sb .plant { cursor: default; margin: 5px 15px; text-align: left; font-weight: 300; font-size: 16px; color: white; text-transform: capitalize; }
-/*#sb .plant:hover { color: black; }*/
 #sb .plant:active { color: white; }
 #sb .active { color: #2dd288; }
 #sb .active:hover { color: #2dd288; }
@@ -37,7 +40,7 @@ input:focus { outline: none; background-color: #2dd288; }
 #sb button { position: absolute; bottom: 15px; }
 #sb button:hover { color: black; }
 #sb button:active { color: white; }
-#sb .creation {  display: block; width: 100%; margin: 0; padding: 0; clear: both; font-size: 12px; font-weight: 100; }
+#sb .creation {  display: block; width: 100%; margin: 0; padding: 0; clear: both; font-size: 12px; font-weight: 300; }
 #sb #season { left: 15px; }
 #sb #load { left: 50%; text-align: center; transform: translateX(-50%);}
 #sb #add { right: 15px; text-align: right;}
@@ -46,26 +49,34 @@ input:focus { outline: none; background-color: #2dd288; }
 #content { display: flex; flex-flow: column; height: 85%; margin: 0; padding: 0; overflow: hidden; cursor: default; }
 /*#content div { display: inline-block; width: 100%; }*/
 #content #data { position: absolute; width: 25%; left: 20%; top: 10%; height: 60%; margin: 0 auto; padding: 0; color: white; font-weight: 100;  }
-#content #data #plantData { float: left; width: 70%; margin: 0; padding: 0; height: 100%; }
+#content #data #plantData { float: left; margin: 0; padding: 0; height: 100%; }
 #content #data .data { text-transform: capitalize; margin: 0 0 10px 15px; padding: 0; font-size: 14px; font-weight: 100; }
-#content #data .visual { background-position: center; background-repeat: no-repeat; background-size: contain; position: absolute; right: 0; top: 0; width: 30%; min-height: 100%; margin: 0; padding: 0; }
+#content #data .visual { display: none; background-position: center; background-repeat: no-repeat; background-size: contain; position: absolute; right: 0; top: 0; width: 30%; min-height: 100%; margin: 0; padding: 0; }
 #content #data #plantName { width: max-content; font-size: 40px; margin-bottom: 15px; font-weight: 300; }
 #content #data li { font-size: 25px; }
+#content #data #outerProgress { width: 80%; margin: 5px auto; padding: 0; min-height: 3px; border-radius: 30px; background-color: white; }
+#content #data #innerProgress { width: 0; margin: 0; padding: 0; min-height: 3px; background-color: #2dd288; }
 
-#content #template { position: relative; width: 80%; max-height: 40%; margin: 0 auto; font-weight: 100; overflow-x: auto; }
+#content #template { position: relative; width: 25%; height: 85%; margin: 0; font-weight: 100; overflow-x: auto; }
 #content #template #newPlantObject { }
-#content #template input { float: left; clear: both; margin: 0 0 15px 0; font-size: 14px; }
+#content #template input { float: left; clear: both; margin: 0 auto 15px auto; font-size: 14px; width: 100%; }
+#content #template .remove { position: static; float: right; margin: 0; padding: 0; }
+#content #template .remove:hover { color: black; }
 #content #template button { float: right; font-size: 14px; }
-#content #template .season { float: left; clear: both; margin: 0 0 15px 0; }
+#content #template .season { float: left; clear: both; margin: 0 0 15px 5px; padding: 0; text-align: left; }
 #content #template #submitSeason {  }
-#content #template #cancelButton {  }
+#content #template #cancelButton { clear: both; }
+
+#content #journal { position: absolute; left: 45%; top: 10%; right: 0; height: 60%; margin: 0 auto; padding: 0; color: white; font-weight: 100;  }
+#content #journal #textArea { width: 100%; height: 55%; margin: 0; padding: 0; }
+#content #journal #entries { width: 100%; height: 45%; margin: 0; padding: 0; }
 
 #calendar { position: absolute; left: 0px; top: 70%; bottom: 2%; cursor: default; color: white; width: 100%; margin: 0; padding: 0;  }
 #calendar table { padding: 0; width: 100%; height: 96%; margin: 2px 0; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; border-collapse: collapse; border: 0px; border-spacing: 0px; }
 #calendar table tr { height: 100%; display: block; margin: 0; padding: 0; }
 #calendar table .heading { margin-bottom: 15px; }
 #calendar table tr #ch { display: inline-block; width: 80%; font-size: 40px; font-weight: 100; margin: 0; padding: 0; text-align: center; }
-#calendar table tr #left { float: left; }
+#calendar table tr #left {  float: left; }
 #calendar table tr #right { float: right; }
 #calendar table tr button { width: 10%; height: 100%; display: inline-block; margin: 0; padding: 0; font-size: 20px;}
 #calendar table tr button:hover { color: black; }

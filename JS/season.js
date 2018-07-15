@@ -42,7 +42,7 @@ germination.season = {
     plantSowDateInput.onfocus = germination.events.removeListener;
     plantSowDateInput.onblur = germination.events.addListener;
     newPlantButton.id = 'newPlantObject'
-    newPlantButton.innerHTML = 'Add Another Plant';
+    newPlantButton.innerHTML = 'Add Plant';
     newPlantButton.onclick = function(){germination.season.addAnotherPlant(document.getElementById('template'))};
     submitButton.id = 'submitSeason';
     submitButton.innerHTML = 'Submit';
@@ -73,12 +73,19 @@ germination.season = {
     cancelButton.innerHTML = 'Cancel';
     cancelButton.onclick = germination.view.removeTemplate;
     for(let prop in localStorage ){
+      let wrapper = document.createElement('div');
       let button = document.createElement('button');
+      let remove = document.createElement('button');
       button.innerHTML = prop;
       button.id = prop;
       button.className = 'season';
       button.onclick = function(){ germination.view.loadSeason(prop); germination.view.removeTemplate(event); };
-      div.appendChild(button);
+      remove.innerHTML = 'X';
+      remove.className = 'remove';
+      remove.onclick = function(event){ console.log(event.target.parentElement.childNodes[0].innerHTML); germination.view.showMessage('season', event.target.parentElement.childNodes[0].innerHTML);   germination.view.removeTemplate(event); };
+      wrapper.appendChild(button);
+      wrapper.appendChild(remove);
+      div.appendChild(wrapper);
       console.log(prop);
     }
     div.appendChild(cancelButton);

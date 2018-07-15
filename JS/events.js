@@ -33,6 +33,8 @@ germination.events = {
           document.getElementById('cancelButton').click();
         }
         break;
+      case 'e':
+        germination.view.createTemplate('edit');
     }
   }
 }

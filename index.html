@@ -5,7 +5,7 @@
   <link rel='stylesheet' href='CSS/main.css'>
 </head>
 <body>
-  <div id='head'><h1>Germ</h1></div>
+  <div id='head'><h1>Germ</h1><div id='author'><p>Laika</p><a href='mailto:beaubaker1027@gmail.com?subject=I%20have%20discovered%20a%20problem'>beaubaker1027@gmail.com</a></div></div>
   <div id='sb'><ul id='pl'><h1 id='seasonName'></h1></ul><div><button id='season' onclick='germination.view.createTemplate(this.id)'>NS</button><button id='load' onclick='germination.view.createTemplate(this.id)'>LS</button><button id='add' onclick='germination.view.createTemplate(this.id)'>AP</button></div></div>
   <div id='content'><div id='data'><div id='plantData'></div><div id ='plantImg' class = 'visual'></div></div></div><div id='calendar'></div>
   <script src='JS/germ.js'></script>
@@ -15,6 +15,7 @@
   <script src='JS/season.js'></script>
   <script src='JS/view.js'></script>
   <script src='JS/events.js'></script>
+  <script src='JS/journal.js'></script>
   <script>germination.init();</script>
 </body>
 </html>

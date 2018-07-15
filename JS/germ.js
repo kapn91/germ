@@ -12,6 +12,7 @@ var germination = {
     germination.data.getKey(germination.data.latest);
     germination.view.loadSeason();
     germination.view.loadContent();
+    germination.view.startUp();
     germination.events.addListener();
   }
 
